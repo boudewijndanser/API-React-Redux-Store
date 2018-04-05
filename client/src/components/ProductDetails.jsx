@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import BuyProductButton from './BuyProductButton.js'
 import {connect} from 'react-redux'
 import {fetchProduct} from '../actions/products'
+import './ProductDetails.css'
 
     //show the price of the product in a paragraph tag with a euro-sign
 //if the image is not null, show the image (using an img tag)
@@ -31,7 +32,7 @@ import {fetchProduct} from '../actions/products'
         return (
           <div>
             <h1>{ product.name }</h1>
-            <p>&euro; {product.price}.00</p>
+            <h2>&euro; {product.price}.00</h2>
             <img src={productImage ? product.image : null} alt="" />
             <p>{product.description}</p>
             <BuyProductButton />

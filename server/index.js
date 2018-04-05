@@ -80,3 +80,21 @@ app.post('/products', (request, response) => {
     })
   })
 })
+// find the product in the DB
+  // change the product and store in DB
+  // respond with the changed product and status code 200 OK
+
+app.put('/products/:id', (req, res) => {
+  const productId = Number(req.params.id)
+  const updates = req.body
+
+  Product.findById(productId)
+  .then(updates => {
+    if (updates) {
+      response.send(updates)
+    } else {
+      response.status(404).send({
+        message: 'Product not found!'
+      })
+    }
+  })

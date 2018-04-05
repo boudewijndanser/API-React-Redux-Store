@@ -1,5 +1,7 @@
 /* client/src/components/BuyProductButton.css */
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Passion+One');
+/* font-family: 'Passion One', cursive;
+font-family: 'Open Sans', sans-serif; */
 button.BuyProduct {
   flex: 1;
   border: 1px solid #ccc;
@@ -10,6 +12,8 @@ button.BuyProduct {
   background-color: #a8e734;
   color: white;
   padding: 15px;
+  border-radius: 8px;
+  font-family: 'Passion One', cursive;
 }
 
 button.BuyProduct:hover {

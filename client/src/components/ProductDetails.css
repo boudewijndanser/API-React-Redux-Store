@@ -1,0 +1,18 @@
+/* client/src/components/ProductDetails.css */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Passion+One');
+/* font-family: 'Passion One', cursive;
+font-family: 'Open Sans', sans-serif; */
+
+body {
+  margin: 20px;
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Passion One', cursive;
+  font-size: 3em;
+}
+
+h2 {
+
+}
