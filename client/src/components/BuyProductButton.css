@@ -1,0 +1,17 @@
+/* client/src/components/BuyProductButton.css */
+
+button.BuyProduct {
+  flex: 1;
+  border: 1px solid #ccc;
+  font-size: 150%;
+  margin: 12px;
+  cursor: pointer;
+  /* max-width: 50px; */
+  background-color: #a8e734;
+  color: white;
+  padding: 15px;
+}
+
+button.BuyProduct:hover {
+  background-color: #719f1a;
+}

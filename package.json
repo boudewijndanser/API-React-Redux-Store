@@ -1,0 +1,14 @@
+{
+  "name": "E-Commerce-Project",
+  "version": "0.5",
+  "description": "Building a store with React, Redux an API and a database!",
+  "main": "index.js",
+  "author": "Boudewijn Danser",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.16.3",
+    "pg": "6",
+    "sequelize": "^4.37.5"
+  }
+}
