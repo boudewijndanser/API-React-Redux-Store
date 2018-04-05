@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
 
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize('postgres://postgres:secret@localhost:5432/postgres')
@@ -31,6 +32,7 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE')
   next()
 })
+app.use(bodyParser.json());
 
 app.get('/products', (request, response) => {
  Product.findAll({
@@ -63,4 +65,18 @@ app.get('/products/:id', (request, response) => {
      message: 'Error'
    })
  })
+})
+
+app.post('/products', (request, response) => {
+  const product = request.body
+  console.log(product);
+  Product.create(product)
+  .then(product => {
+    response.status(201).end(`Product created: ${product.name}`)
+  })
+  .catch(err => {
+    response.status(500).send({
+      message: 'Error'
+    })
+  })
 })
