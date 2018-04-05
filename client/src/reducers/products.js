@@ -1,26 +1,14 @@
 //client/src/reducers/products.js
+import {FETCHED_ALL_PRODUCTS} from '../actions/products'
 
-const initialState = [
-  {
-    id: 1,
-    name: 'Douche bag',
-    price: 1450
-  },
-  {
-    id: 5,
-    name: 'Tweater',
-    price: 550
-  },
-  {
-    id: 7,
-    name: 'T-shirt',
-    price: 10
-  }
-]
-
-export default function (state = initialState, action) {
+export default function (state = [], action) {
   switch (action.type) {
+    case FETCHED_ALL_PRODUCTS:
+      return action.payload
+
     default:
       return state
   }
 }
+
+// (you can get rid of the hardcoded products now)
