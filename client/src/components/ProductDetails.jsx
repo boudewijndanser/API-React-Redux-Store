@@ -3,6 +3,7 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import BuyProductButton from './BuyProductButton.js'
 import {connect} from 'react-redux'
+import {fetchProduct} from '../actions/products'
 
     //show the price of the product in a paragraph tag with a euro-sign
 //if the image is not null, show the image (using an img tag)
@@ -18,10 +19,15 @@ import {connect} from 'react-redux'
           image: PropTypes.string.isRequired
         })).isRequired
       }
-
+      componentWillMount(props) {
+        this.props.fetchProduct(this.props.match.params.id)
+      }
       render() {
         const {product} = this.props
-        const productImage = this.props.image
+        if (!product) return 'Be patient...'
+        const productImage = product.image
+
+
         return (
           <div>
             <h1>{ product.name }</h1>
@@ -35,10 +41,9 @@ import {connect} from 'react-redux'
     }
 
 
-const mapStateToProps = function (state) {
+    const mapStateToProps = function (state, props) {
   return {
-    product: state.products.find(product => product.id === 7)
+    product: state.product
   }
 }
-
-export default connect(mapStateToProps)(ProductDetails)
+export default connect(mapStateToProps,{fetchProduct})(ProductDetails)
