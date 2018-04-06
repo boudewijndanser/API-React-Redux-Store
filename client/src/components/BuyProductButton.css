@@ -5,7 +5,7 @@ font-family: 'Alfa Slab One', cursive; */
 button.BuyProduct {
   flex: 1;
   /* border: 1px solid #ccc; */
-  font-size: 150%;
+  font-size: 20px;
   margin: 12px;
   cursor: pointer;
   /* max-width: 50px; */
