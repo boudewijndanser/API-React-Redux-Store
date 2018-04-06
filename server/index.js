@@ -1,9 +1,21 @@
+//server/index.js
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize('postgres://postgres:secret@localhost:5432/postgres')
+const app = express()
+app.use(bodyParser.json())
+
+var Sequelize = require('sequelize')
+var sequelize = new Sequelize('postgres://postgres:secret@localhost:5432/postgres')
+
+app.listen(4001, () => console.log('Express API listening on port 4001'))
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE')
+  next()
+})
 
 const Product = sequelize.define('product', {
   name: {
@@ -24,59 +36,91 @@ const Product = sequelize.define('product', {
   timestamps: false
 })
 
-app.listen(4001, () => console.log('Express API listening on port 4001'))
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE')
-  next()
-})
-app.use(bodyParser.json());
-
-app.get('/products', (request, response) => {
- Product.findAll({
-   attributes: ['id', 'name', 'price']
- })
- .then(products => {
-   response.send({products})
- })
- .catch(err => {
-   response.status(500).send({
-     message: 'Product not found!'
-   })
- })
+app.get('/products', (req, res) => {
+	Product.findAll({
+	  attributes: ['id', 'name', 'price']
+	})
+	  .then(result => {
+	    // do something with result
+	    res.send({
+	    	products: result
+	    })
+	  })
+	  .catch(err => {
+	    // there was an error, return some HTTP error code
+	    res.status(500).send({error: 'Something went wrong with Postgres'})
+	  })
 })
 
-app.get('/products/:id', (request, response) => {
- const productId = request.params.id
- Product.findById(productId)
- .then(result => {
-   if (result) {
-     response.send(result)
-   } else {
-     response.status(404).send({
-       message: 'Product not found!'
-     })
-   }
- })
- .catch(err => {
-   response.status(500).send({
-     message: 'Error'
-   })
- })
+app.get('/products/:id', (req, res) => {
+	const productId = req.params.id
+	Product.findById(productId)
+	  .then(result => {
+	  	if (!result) {
+	  		res.status(404).send({error: 'Does not exist'})
+	  	}
+	  	else {
+	  		res.send(result)
+	  	}
+	  })
+	  .catch(err => {
+	    res.status(500).send({error: 'Something went wrong with Postgres'})
+	  })
 })
 
-app.post('/products', (request, response) => {
-  const product = request.body
-  console.log(product);
-  Product.create(product)
-  .then(product => {
-    response.status(201).end(`Product created: ${product.name}`)
+app.post('/products', (req, res) => {
+  const product = req.body
+  console.log(product)
+
+  Product.create(product).then(entity => {
+
+    // send back the 201 Created status and the entity
+    res.status(201).send(entity)
   })
-  .catch(err => {
-    response.status(500).send({
-      message: 'Error'
+})
+
+app.put('/products/:id', (req, res) => {
+  const productId = Number(req.params.id)
+  const updates = req.body
+
+  // find the product in the DB
+  Product.findById(req.params.id)
+    .then(entity => {
+      // change the product and store in DB
+      return entity.update(updates)
     })
-  })
+    .then(final => {
+      // respond with the changed product and status code 200 OK
+      res.send(final)
+    })
+    .catch(error => {
+      res.status(500).send({
+        message: `Something went wrong`,
+        error
+      })
+    })
+
+})
+
+app.delete('/products/:id', (req, res) => {
+  const productId = Number(req.params.id)
+
+  Product.findById(req.params.id)
+	  .then(entity => {
+	    // change the product and store in DB
+	    return entity.destroy()
+	  })
+	  .then(_ => {
+	    // respond with the changed product and status code 200 OK
+	    res.send({
+	      message: 'The product was deleted succesfully'
+	    })
+	  })
+	  .catch(error => {
+	    res.status(500).send({
+	      message: `Something went wrong`,
+	      error
+	    })
+	  })
 })

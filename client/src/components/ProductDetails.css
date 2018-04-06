@@ -1,9 +1,4 @@
-body {
-  margin: 20px;
-  padding: 20px;
-  max-width: 480px;
-}
-
+/* client/src/components/ProductDetails.css */
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Open+Sans');
 /* font-family: 'Open Sans', sans-serif;
 font-family: 'Alfa Slab One', cursive; */
@@ -11,21 +6,21 @@ font-family: 'Alfa Slab One', cursive; */
 body {
   /* margin: 20px; */
   /* padding: 20px; */
-
+  max-width: 480px;
 }
 
-h1 {
+h3 {
   font-family: 'Alfa Slab One', cursive;
-  font-size: 40px;
+  font-size: 70px;
   color: rgb(48, 121, 98);
   margin: 0px;
 }
 
-h5 {
+h4 {
   font-family: 'Alfa Slab One', cursive;
-  font-size: 18px;
+  font-size: 20px;
   color: rgb(118, 207, 193);
-  margin-top: 15px;
+  margin: 0px;
 }
 
 p {
