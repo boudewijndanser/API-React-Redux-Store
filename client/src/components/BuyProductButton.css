@@ -1,21 +1,23 @@
 /* client/src/components/BuyProductButton.css */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Passion+One');
-/* font-family: 'Passion One', cursive;
-font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Open+Sans');
+/* font-family: 'Open Sans', sans-serif;
+font-family: 'Alfa Slab One', cursive; */
 button.BuyProduct {
   flex: 1;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   font-size: 150%;
   margin: 12px;
   cursor: pointer;
   /* max-width: 50px; */
-  background-color: #a8e734;
+  background-color: rgb(93, 221, 155);
   color: white;
   padding: 15px;
   border-radius: 8px;
-  font-family: 'Passion One', cursive;
+  font-family: 'Alfa Slab One', cursive;
+  margin: 0px;
+  margin-top: 10px;
 }
 
 button.BuyProduct:hover {
-  background-color: #719f1a;
+  background-color: rgb(25, 140, 95);
 }

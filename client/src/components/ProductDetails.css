@@ -1,18 +1,30 @@
 /* client/src/components/ProductDetails.css */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Passion+One');
-/* font-family: 'Passion One', cursive;
-font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Open+Sans');
+/* font-family: 'Open Sans', sans-serif;
+font-family: 'Alfa Slab One', cursive; */
 
 body {
-  margin: 20px;
-  padding: 20px;
+  /* margin: 20px; */
+  /* padding: 20px; */
+  max-width: 480px;
 }
 
-h1 {
-  font-family: 'Passion One', cursive;
-  font-size: 3em;
+h3 {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 70px;
+  color: rgb(48, 121, 98);
+  margin: 0px;
 }
 
-h2 {
+h4 {
+  font-family: 'Alfa Slab One', cursive;
+  font-size: 20px;
+  color: rgb(118, 207, 193);
+  margin: 0px;
+}
 
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: rgb(48, 121, 98);
 }
